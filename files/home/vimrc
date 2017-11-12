@@ -53,23 +53,50 @@ if !has('gui_running')
 endif
 " /lightline
 
+
+"
+" tabline
+"
+let g:buftabline_show=1     " only if >1 buffer
+let g:buftabline_numbers=2  " ordinal number
+" /tabline
+
+
 "
 " global behabiour
 "
 set hidden                     " allow navigation through unwritten buffers
 syntax on
 filetype plugin indent on
+set autoindent
+
+" https://stackoverflow.com/questions/2902048/vim-save-a-list-of-open-files-and-later-open-all-files
+autocmd VimLeave * mksession! ~/.vim/shutdown_session.vim
+command RS :source ~/.vim/shutdown_session.vim
+" autocmd VimEnter source ~/.vim/shutdown_session.vim<CR>
+command Ss :mksession! ~/.vim/manual_session.vim
+command Rs :source ~/.vim/manual_session.vim
 " /behavior
 
 "
 " shortcuts
 "
 map <silent> <F3> :NERDTreeToggle<CR>
-nmap & :buffer1<CR>
-nmap é :buffer2<CR>
-nmap " :buffer3<CR>
-nmap ' :buffer4<CR>
+nmap & <Plug>BufTabLine.Go(1)
+nmap é <Plug>BufTabLine.Go(2)
+nmap " <Plug>BufTabLine.Go(3)
+nmap ' <Plug>BufTabLine.Go(4)
 nmap c :!git commit %<CR>
 
 command GC !git commit % -m "<args>"
 " /shortcuts
+
+"
+" filetypes specific
+"
+
+autocmd FileType html setlocal tabstop=4
+
+autocmd FileType javascript setlocal tabstop=4
+
+" /filetypes
