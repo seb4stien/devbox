@@ -72,7 +72,7 @@ set autoindent
 
 " https://stackoverflow.com/questions/2902048/vim-save-a-list-of-open-files-and-later-open-all-files
 autocmd VimLeave * mksession! ~/.vim/shutdown_session.vim
-command RS :source ~/.vim/shutdown_session.vim
+command Rss :source ~/.vim/shutdown_session.vim
 " autocmd VimEnter source ~/.vim/shutdown_session.vim<CR>
 command Ss :mksession! ~/.vim/manual_session.vim
 command Rs :source ~/.vim/manual_session.vim
@@ -87,6 +87,8 @@ nmap é <Plug>BufTabLine.Go(2)
 nmap " <Plug>BufTabLine.Go(3)
 nmap ' <Plug>BufTabLine.Go(4)
 nmap c :!git commit %<CR>
+
+map <F10> :w<CR>:!'%:p'<CR>
 
 command GC !git commit % -m "<args>"
 " /shortcuts
